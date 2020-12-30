@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="number" id="page"> <button onclick="Data();">검색</button>
+    </div>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        /*
+            검색버튼을 누르면 page 엘리먼트에 작성된 숫자값으로 통신을 한다.
+            page 엘리먼트에 값이 없거나 0이하면 알림창을 띄운다. ('페이지 값을 확인해 주세요')
+            container 엘리먼트에 통신으로 얻은 이미지들을 뿌린다.
+            단 그 전에 있던 이미지들은 없어지고 새로운 이미지들만 뿌린다.
+        */
+
+        var container = document.querySelector('#container');
+        var pageElement = document.querySelector('#page');
+
+        function Data() {
+            var pageVal = pageElement.value;
+            if (pageVal <= 0) {
+                alert('페이지 값을 확인해 주세요');
+            } else {
+                container.innerHTML = '';          // 이미지 누적 안되게 가져오는 법           
+                getData(pageVal);
+            }
+        }
+        
+        function getData() {
+            var pageVal = pageElement.value;
+            var url = `https://picsum.photos/v2/list?page=${pageVal}&limit=18`;
+            axios.get(url).then(function (res) {
+                console.log(res);
+                if (res.status === 200) { //통신이 잘됐다 응답이 왔다.라는 뜻
+                    res.data.forEach(function (item) {
+                        makeItem(item);
+                    });
+                }
+            });
+        }
+
+        function makeItem(item) {
+            var modUrl = `https://picsum.photos/id/${item.id}/300`;
+            var img = document.createElement('img');
+            img.src = modUrl;
+            container.append(img);
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .item {
+            flex-basis: 32%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            height: calc(30vw * .75);
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .item_txt {
+            width: 100%;
+            bottom: 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, .7);
+            position: absolute;
+            opacity: 0;
+            transition: all .2s;
+        }
+
+        .item:hover>.item_txt {
+            opacity: 1;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script src="./axios.min.js"></script>
+    <script>
+        const container = document.getElementById('container');
+        const url = 'https://picsum.photos/v2/list?page=5';
+        
+        axios.get(url).then(res => {
+            res.data.forEach(data => {
+                container.append(createEl(data))
+            });
+        })
+
+        function createEl(obj) {
+            const el = document.createElement('a');
+
+            el.className = 'item';
+            el.href = obj.url;
+            el.target = "_blank";
+
+            el.innerHTML = `
+                <img src="${obj.download_url}">
+                <div class="item_txt">
+                    <span class="author">${obj.author}</span>
+                </div>
+            `;      
+
+            return el;      
+        }
+    </script>
+</body>
+</html>
