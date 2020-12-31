@@ -12,6 +12,36 @@
 </head>
 
 <body>
+  <div id="container"></div>
+
+    <script src="./axios.min.js"> </script> 
+    <script>
+      var container = document.querySelector('#container')
+      
+      const url = './data.json';
+      axios.get(url).then(function(res){
+          console.log(res.data);
+
+          res.data.forEach(obj => {
+
+            const el = createElement(obj);
+            container.append(el);
+
+          });
+      });
+      
+      function createElement(obj) {
+        var el = document.createElement('div');
+        el.innerHTML = `
+        <img src="${obj.file_path}" alt="image -${obj.title}">
+        <h2>${obj.title}</h2>
+        <span>${obj.author_name}</span>
+        <p>${obj.title}</p>
+        <small>${obj.regdate}</small>`;
+        return el;
+      }
+
+    </script>
   <!-- <div id="wrap"></div> -->
   <header>
     <a href="#">
