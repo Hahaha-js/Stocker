@@ -12,138 +12,27 @@
 </head>
 
 <body>
-  <div id="container"></div>
-
-    <script src="./axios.min.js"> </script> 
-    <script>
-      var container = document.querySelector('#container')
-      
-      const url = './data.json';
-      axios.get(url).then(function(res){
-          console.log(res.data);
-
-          res.data.forEach(obj => {
-
-            const el = createElement(obj);
-            container.append(el);
-
-          });
-      });
-      
-      function createElement(obj) {
-        var el = document.createElement('div');
-        el.innerHTML = `
-        <img src="${obj.file_path}" alt="image -${obj.title}">
-        <h2>${obj.title}</h2>
-        <span>${obj.author_name}</span>
-        <p>${obj.title}</p>
-        <small>${obj.regdate}</small>`;
-        return el;
-      }
-
-    </script>
-  <!-- <div id="wrap"></div> -->
   <header>
-    <a href="#">
-      <h1>Logo</h1>
-    </a>
+    
+    <h1>Stocker</h1>
+    
   </header>
 
   <main>
-
-    <!-- <div id="container">
-      <a href="#">
-        <div id="page"></div>
-          
-        <div>
-          <strong>title</strong>
-          <small>author name</small>
-        </div>
-      </a>
-    </div> -->
-
-
-    </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
-  <a href="#">
-    <img src="./asset/햄스터.jpg" alt="">
-    <div>
-      <strong>title</strong>
-      <small>author name</small>
-    </div>
-  </a>
+    <div id="container"></div>
   </main>
+
+  <div id="modal" class="bg">
+    <div id="modal_inner"></div>
+  </div>
+
+
+  <script src="./axios.min.js"></script>
+  
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src=./js/image.js></script>
+
 </body>
 
 </html>
