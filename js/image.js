@@ -8,21 +8,25 @@
               <strong>${obj.author_name}</strong>
               <p>${obj.description}</p>
               <small>${obj.regdate}</small>
+              <a href="${obj.file_path}" download>Download Image</a>
+              
     
             `;
     }
+
+    
     // id 모달인 엘리먼트를 엡솔루트를 줘서 바디태그를 다 덮어버리자
     // 릴레이티브를 받는쪽을 정해보자
     // modal 은 dispaly: none
 
     function hideModal(e) {
       if(e.target == modal) {
-        modal.classList.remove('bg')
+        modal.classList.add('hide')
       }
     }
 
     function showModal() {
-      modal.classList.add('bg');
+      modal.classList.remove('hide');
     }
 
 
@@ -40,8 +44,8 @@
       // el.onclick = setModal;
 
       el.onclick = function () {
-        showModal();
         setModal(obj);
+        showModal();
       }
 
       return el;
